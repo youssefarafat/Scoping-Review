@@ -1,0 +1,174 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Oct  4 14:41:34 2021
+
+@author: acsf638
+"""
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as mpl
+import urllib.request
+
+yearsAnalysis = np.arange(2010,2021)
+yearsAnalysis
+
+# 0
+#Basic keywords that describe cancer, concatenate
+basicURL                = 'https://www.ncbi.nlm.nih.gov/pubmed/?term='
+allF                    = '%5BAll%20Fields%5D' # all fields code
+
+CancerKeyW_1            =  '(%22neoplasms%22';
+CancerKeyW_2            =  'OR%22cancer%22';
+CancerKeyW_3            =  'OR%22tumor%22';
+CancerKeyW_4            =  'OR%22tumour%22';
+CancerKeyW_5            =  'OR%22oncology%22'+allF+')';
+CancerKeywords          =  CancerKeyW_1+CancerKeyW_2+CancerKeyW_3+CancerKeyW_4+CancerKeyW_5
+
+# 1 DL KEYWORDS
+DLKeyW_6              =  '(%22deep%20learning%22%5BMeSH%20Terms%5D%20';
+DLKeyW_7              =  'OR%20%22deeplearning%22%5BAll%20Fields%5D%20';
+DLKeywords            = DLKeyW_6+DLKeyW_7
+
+# 2CNN
+CNNKeywords         =  'AND%20%22CNN%22%5BAll%20Fields%5D';
+
+# 3 ANN
+ANNKeywords          =  'AND%20%22ANN%22%5BAll%20Fields%5D';
+
+# 4 RNN
+RNNKeywords    =  'AND%20%22RNN%22%5BAll%20Fields%5D';
+
+
+# 5 all cases
+generalKeywords         = '';
+
+
+keywords=[CancerKeywords,DLKeywords,CNNKeywords,ANNKeywords,ANNKeywords,RNNKeywords,generalKeywords]
+EntriesPerTerm = np.zeros((len(keywords),len(yearsAnalysis))) # disease (and total) and year
+# iterate over the years and the keywords
+#for x in keywords:
+for i in range(len(yearsAnalysis)):
+    # Define the basic link that are going to be read from pubmed
+    # add the search term (i.e. ? term) and the delimiters 
+    #    %27  correspond to ' and %22 corespond to "
+    # link = 'https://pubmed.ncbi.nlm.nih.gov/?term=%27'+x+'%27'
+    
+    year                                = yearsAnalysis[i];
+    
+    
+    
+    print(year)
+    #yearURL                             = 'AND+%22'+str(year)+'%22%5BDP%5D+';
+    yearURL                             = '%22'+str(year)+'%22%5BDP%5D+';
+    for j in range(len(keywords)):
+        # This is the code to select PubMed entries combined with year
+        #urlAddress                          = basicURL+yearURL+keywords[j]+'%27'+allF
+        urlAddress                          = basicURL+yearURL+keywords[j]
+         
+        # If you want to see the actual url that will be queried, 
+        # uncomment the following line
+        #print(urlAddress)
+        
+        # read from the link, it is important to use the try as
+        # sometimes there are time outs,
+        try: 
+            with urllib.request.urlopen(urlAddress) as url:
+               #f = urllib.request.urlopen.read(link)
+              wholeURL = url.read().decode('utf-8')
+            # Once the wholeURL is downloaded, search for the place where the total
+            # number of entries in PubMed exist, this can be done with 2 codes, 
+            # one is totalResults and the other is resultcount. This changed recently with 
+            # the new page results from PubMed
+
+            # find the code
+            location_init = wholeURL.index('resultcount')
+            # detect the limits of the result number itself, use = and / to limit
+            location_2    = wholeURL.find('=',location_init,location_init+30)
+            location_3    = wholeURL.find('/',location_2+1,location_2+30)
+            # the actual number of entries
+    
+            EntriesPerTerm[j,i] = wholeURL[location_2+2:location_3-2]
+        except:
+            EntriesPerTerm[j,i] = 0
+            # Display the absolute number of entries, 
+fig = mpl.figure()
+ax = fig.add_subplot(111)
+
+mpl.plot(EntriesPerTerm.T, linestyle='-', marker='.', color='b',markersize = 2)
+#mpl.xlabel(keywords)
+mpl.xlabel('years')
+mpl.ylabel('Abs. Entries')
+#ax.xaxis.set_ticks([0,70,10])
+#ax.xaxis.set_ticklabels(keywords)
+tickValues =np.arange(2010,2021)
+ax.xaxis.set_ticklabels((tickValues))
+ax.tick_params(axis='x', rotation=90)
+mpl.grid()
+# Display all entries as a proportion of the total number of entries of the year
+
+fig = mpl.figure( figsize=(9, 4))
+ax = fig.add_subplot(111)
+mpl.plot(yearsAnalysis,EntriesPerTerm[0,:]/EntriesPerTerm[5,:],label="Cancer", linestyle='-',linewidth=4,   marker='', color='k',markersize = 5)
+mpl.plot(yearsAnalysis,EntriesPerTerm[1,:]/EntriesPerTerm[5,:],label="DL", linestyle='-',linewidth=2,  marker='', color='b',markersize = 5)
+mpl.plot(yearsAnalysis,EntriesPerTerm[2,:]/EntriesPerTerm[5,:],label="CNN",  linestyle='-', marker='', color='g',markersize = 5)
+mpl.plot(yearsAnalysis,EntriesPerTerm[3,:]/EntriesPerTerm[5,:],label="ANN",  linestyle=':', marker='', color='indigo',markersize = 5)
+mpl.plot(yearsAnalysis,EntriesPerTerm[4,:]/EntriesPerTerm[5,:],label="RNN",  linestyle='--',linewidth=2,  marker='', color='r',markersize = 5)
+
+
+ax.xaxis.set_ticklabels((tickValues))
+mpl.xlabel('years')
+mpl.ylabel('Rel. Entries')
+#ax.xaxis.set_ticks([0,70,10])
+#ax.xaxis.set_ticklabels(keywords)
+tickValues =np.arange(2010,2021)
+ax.xaxis.set_ticklabels((tickValues))
+ax.tick_params(axis='x', rotation=90)
+mpl.legend(loc="upper left")
+mpl.grid()
+fig = mpl.figure( figsize=(9, 4))
+ax = fig.add_subplot(111)
+mpl.plot(yearsAnalysis,EntriesPerTerm[1,:]/EntriesPerTerm[5,:],label="DL", linestyle='-',linewidth=2,  marker='', color='b',markersize = 5)
+mpl.plot(yearsAnalysis,EntriesPerTerm[2,:]/EntriesPerTerm[5,:],label="CNN",  linestyle='-', marker='', color='g',markersize = 5)
+mpl.plot(yearsAnalysis,EntriesPerTerm[3,:]/EntriesPerTerm[5,:],label="ANN",  linestyle=':', marker='', color='indigo',markersize = 5)
+mpl.plot(yearsAnalysis,EntriesPerTerm[4,:]/EntriesPerTerm[5,:],label="RNN",  linestyle='--',linewidth=2,  marker='', color='r',markersize = 5)
+
+
+ax.xaxis.set_ticklabels((tickValues))
+mpl.xlabel('years')
+mpl.ylabel('Rel. Entries')
+
+tickValues =np.arange(2010,2021)
+ax.xaxis.set_ticklabels((tickValues))
+ax.tick_params(axis='x', rotation=90)
+mpl.legend(loc="upper center")
+mpl.grid()
+
+combinedEntries = np.zeros((len(keywords), len(keywords)))
+numKeyWords = len(keywords)
+
+for counterKW1 in np.arange(0, numKeyWords):
+    for counterKW2 in np.arange(counterKW1, numKeyWords):
+        urlAddress = basicURL + '%22' +CancerKeywords[counterKW1] + '%22' + 'AND' + '%22' + CancerKeywords[counterKW2] + '%22'
+        with urllib.request.urlopen(urlAddress) as url:
+            wholeURL = url.read().decode('utf-8')
+            location_init = wholeURL.index('resultcount')
+            location_2 = wholeURL.find('=', location_init, location_init+30)
+            location_3 = wholeURL.find('/',location_2+1, location_2+30)
+            combinedEntries[counterKW1,counterKW2] = wholeURL[location_2+2:location_3-2]
+print(combinedEntries)
+fig = mpl.figure( figsize=(11, 8))
+from mpl_toolkits.mplot3d import Axes3D 
+ax = fig.add_subplot(111, projection='3d')
+for i in np.arange(0,numKeyWords):
+    currentColor = i/numKeyWords
+    for j in np.arange(i,numKeyWords):
+        #ax.bar3d(i,j,combinedEntries[i,j],[1,1,1],[1,1,1],[1,1,1],shade=True)
+        ax.bar3d(i,j,0,1,1,(combinedEntries[i,j]),shade=True)
+        #print(combinedEntries[i,j])
+ax.view_init(40, 115)
+ax.xaxis.set_ticks(0.5+np.arange(0,numKeyWords))
+ax.yaxis.set_ticks(np.arange(0,numKeyWords)-0.5)
+ax.xaxis.set_ticklabels((keywords))
+ax.yaxis.set_ticklabels((keywords))   
+ax.tick_params(axis='x', rotation=90)            
