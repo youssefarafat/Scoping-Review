@@ -4,7 +4,12 @@
 This work has been submitted for publication. Once it is accepted, the reference with more details about the code and results will be added here.
 
 # Abstract
-Background: Cancer-related research, as indicated by the number of entries in Medline, the National Library of Medicine of theUSA, has dominated medical literature. An important component of this research is the use of computational techniques to analyse the data produced by the many acquisition modalities. This paper presents a review of the computational image analysis techniques that have been applied to cancer data through mining Medline/PubMed entries with a combination of keywords. In addition, the programming languages and software platforms through which these techniques are applied are also reviewed.
+**Background**: Cancer-related research, as indicated by the number of entries in Medline, the National Library of Medicine of theUSA, has dominated medical literature. An important component of this research is the use of computational techniques to analyse the data produced by the many acquisition modalities. This paper presents a review of the computational image analysis techniques that have been applied to cancer data through mining Medline/PubMed entries with a combination of keywords. In addition, the programming languages and software platforms through which these techniques are applied are also reviewed.
+**Methods**: Automatic mining of Medline/PubMed was performed witha series of specific keywords that identified different computational tech-niques. These keywords focused on traditional image processing and computer vision techniques, machine learning techniques, deep learning techniques and programming languages and software platforms.
+**Results**: The entries related to traditional image processing and computer vision techniques have decreased at the same time that machinelearning  and  deep  learning  have  increased  significantly.  Within  deep learning, the most common keyword was convolutional neural network. Within the programming languages and software environments, Fiji and ImageJ  were  the  most  popular  followed  by  Matlab,  R,  and  Python. Within the more specialised softwares, QuPath has had a sharp growth overtaking other platforms like ICY and CellProfiler. 
+**Conclusions**:  The  techniques  of  artificial  intelligence  techniques  anddeep  learning  have  grown  to  overtake  most  other  image  analysis  tech-niques and the trend at which they grow is still rising. The most usedtechnique  has  been  convolutional  neural  networks,  commonly  used  toanalyse and classify images.
+
+
 # Code & Results
 The code to automatically mine PubMed and generate these figures is placed in this repository
 
