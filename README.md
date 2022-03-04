@@ -10,15 +10,15 @@ The code to automatically mine PubMed and generate these figures is placed in th
 
 <br />
 
-![Screenshot1](Fig_1_TrendsTechniquesYears.png)
+![Screenshot1](Fig_1_TrendsTechniquesYears_2022_02_12.png)
 
 <br />
 
-![Screenshot2](Fig_2_TrendsTechniquesYears.png)
+![Screenshot2](Fig_2_TrendsTechniquesYears_2022_02_12.png)
 
 <br />
 
-![Screenshot3](Fig_3_TrendsTechniquesYears.png)
+![Screenshot3](Fig_3_TrendsTechniquesYears_2022_02_12.png)
 
 <br />
 
@@ -26,11 +26,13 @@ The code to automatically mine PubMed and generate these figures is placed in th
 
 <br />
 
-![Screenshot](Fig_5_Trends_ML_Years.png)
+![Screenshot5](Fig_5_Trends_ML_Years.png)
 
 <br />
 
-![Screenshot](Fig_6_Trends_DL.png)
+![Screenshot6](Fig_6_Trends_DL.png)
 
 <br />
+
+![Screenshot7] (Fig_7_TrendsEnvironments.png)
 
