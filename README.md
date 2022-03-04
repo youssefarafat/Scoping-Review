@@ -36,3 +36,5 @@ The code to automatically mine PubMed and generate these figures is placed in th
 
 ![Screenshot7] (Fig_7_TrendsEnvironments.png)
 
+<br />
+
