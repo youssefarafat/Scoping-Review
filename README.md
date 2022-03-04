@@ -10,31 +10,38 @@ The code to automatically mine PubMed and generate these figures is placed in th
 
 <br />
 
-![Screenshot1](Fig_1_TrendsTechniquesYears_2022_02_12.png)
+![Screenshot1] ![Fig_1_TrendsTechniquesYears_2022_02_12](https://user-images.githubusercontent.com/90700104/156756755-3e011d17-e5ea-410a-a0e1-456df2c28747.png)
+
 
 <br />
 
-![Screenshot2](Fig_2_TrendsTechniquesYears_2022_02_12.png)
+![Screenshot2](Fig_2_TrendsTechniquesYears_2022_02_12.png)![Fig_2_TrendsTechniquesYears_2022_02_12](https://user-images.githubusercontent.com/90700104/156756782-a82c6293-32ce-4ceb-869c-813eccf250c4.png)
+
 
 <br />
 
-![Screenshot3](Fig_3_TrendsTechniquesYears_2022_02_12.png)
+![Screenshot3](Fig_3_TrendsTechniquesYears_2022_02_12.png)![Fig_3_TrendsTechniquesYears_2022_02_12](https://user-images.githubusercontent.com/90700104/156756808-317ab2cd-b8fb-4517-9e7e-ea0d117e71a9.png)
+
 
 <br />
 
-![Screenshot4](Fig_4_Trends_ML.png)
+![Screenshot4](Fig_4_Trends_ML.png)![Fig_4_Trends_ML](https://user-images.githubusercontent.com/90700104/156756821-fbee88e5-b700-43a1-8f6b-378703dd97bb.png)
+
 
 <br />
 
-![Screenshot5](Fig_5_Trends_ML_Years.png)
+![Screenshot5](Fig_5_Trends_ML_Years.png)![Fig_5_Trends_ML_Years](https://user-images.githubusercontent.com/90700104/156756825-2a80618a-b33b-4b97-8862-fd86c5c20d62.png)
+
 
 <br />
 
-![Screenshot6](Fig_6_Trends_DL.png)
+![Screenshot6](Fig_6_Trends_DL.png)![Fig_6_Trends_DL](https://user-images.githubusercontent.com/90700104/156756845-7157ed69-f31d-4537-a01c-da83566aa2ff.png)
+
 
 <br />
 
-![Screenshot7] (Fig_7_TrendsEnvironments.png)
+![Screenshot7] (Fig_7_TrendsEnvironments.png)![Fig_7_TrendsEnvironments](https://user-images.githubusercontent.com/90700104/156756852-74202fae-c262-464f-8606-d3a7a120ea09.png)
+
 
 <br />
 
